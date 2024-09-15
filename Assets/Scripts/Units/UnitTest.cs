@@ -12,7 +12,7 @@ public class UnitTest : Unit
     {
     }
 
-    // corrigir a parte do tiro
+    // corrigir a parte do tiro (spawn)
     public override void Attack()
     {
         cooldownFire += Time.deltaTime;
@@ -23,7 +23,7 @@ public class UnitTest : Unit
             Debug.Log("Atira");
             cooldownFire = 0;
 
-            SpawnBullet(transform);
+            //SpawnBullet(transform);
         }
     }
 
