@@ -41,6 +41,10 @@ public class UnitTest : Unit
 
     void Update()
     {
+    }
+
+    private void FixedUpdate()
+    {
         Attack();
     }
 }

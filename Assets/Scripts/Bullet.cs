@@ -8,6 +8,7 @@ public class Bullet : MonoBehaviour
 {
     public Transform destination;
     public float speedBullet;
+    public float timeBullet;
 
     public Bullet(Transform destination)
     {
@@ -22,11 +23,15 @@ public class Bullet : MonoBehaviour
 
     void MovementBullet()
     {
+        timeBullet += Time.deltaTime;
         transform.position = Vector2.MoveTowards(transform.position, destination.position, speedBullet * Time.deltaTime);
 
-        if (Vector2.Distance(transform.position, destination.position) < 0.001f)
+
+        //Alterar para o alcance
+        if (timeBullet  > 10)
         {
             this.gameObject.SetActive(false);
         }
     }
+
 }

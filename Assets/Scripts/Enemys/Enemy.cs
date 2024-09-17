@@ -1,26 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour
 {
-    public float progressAlongPath;  // Progresso do inimigo ao longo do caminho
+    protected float progressAlongPath;  // Progresso do inimigo ao longo do caminho
 
     public int life;
-    public float speed;
 
-    public List<Transform> paths = new List<Transform>();
+    public List<Transform> paths;
     public int index = 0;
 
-    protected Enemy(int life, float speed)
-    {
-        this.life = life;
-        this.speed = speed;
-    }
+    public DataEnemy dataEnemy;
 
     protected void MoveAlongPath()
     {
-        transform.position = Vector2.MoveTowards(transform.position, paths[index].position, speed * Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position, paths[index].position, dataEnemy.speed * Time.deltaTime);
 
         if (Vector2.Distance(transform.position, paths[index].position) <  0.1f)
         {
@@ -29,6 +25,19 @@ public abstract class Enemy : MonoBehaviour
                 index++;
             }
             else
+            {
+                this.gameObject.SetActive(false);
+            }
+        }
+    }
+
+     protected void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Bullet"))
+        {
+            collision.gameObject.SetActive(false);
+            life -= 100;
+            if(life <= 0)
             {
                 this.gameObject.SetActive(false);
             }

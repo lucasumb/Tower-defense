@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: Enemy test
   health: 100
-  speed: 0
+  speed: 3
